@@ -10,7 +10,19 @@ ENV JENKINS_URL ""
 ENV PRIVATE_KEY "/ssh/id_rsa"
 VOLUME /ssh
 
-RUN apk add --update --no-cache bash curl procps
+RUN apk add --update --no-cache \
+  bash \
+  ca-certificates \
+  curl \
+  openssh \
+  openssl \
+  openssl-dev \
+  procps \
+  tar \
+  unzip \
+  wget \
+  && update-ca-certificates \
+  &&  rm -rf /var/lib/apt/lists/*
 
 # SSH config.
 RUN mkdir -p /root/.ssh
